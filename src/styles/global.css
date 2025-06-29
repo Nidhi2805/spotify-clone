@@ -1,0 +1,51 @@
+:root {
+    --primary: #1db954;
+    --black: #121212;
+    --dark-gray: #181818;
+    --gray: #282828;
+    --light-gray: #b3b3b3;
+    --white: #ffffff;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--black);
+    color: var(--white);
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  
+  .player-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+  }
+  
+  .main-content {
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .playlists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
