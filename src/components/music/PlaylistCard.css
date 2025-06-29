@@ -1,0 +1,37 @@
+.playlist-card {
+    background-color: var(--dark-gray);
+    border-radius: 8px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .playlist-card:hover {
+    background-color: var(--gray);
+    transform: scale(1.03);
+  }
+  
+  .playlist-image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  
+  .playlist-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .playlist-description {
+    font-size: 14px;
+    color: var(--light-gray);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }

@@ -1,0 +1,33 @@
+.home-container {
+    padding: 20px;
+    color: var(--white);
+  }
+  
+  .home-container h1 {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+  
+  .playlists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+    padding: 10px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .playlists-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .home-container h1 {
+      font-size: 24px;
+    }
+    
+    .playlists-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+  }

@@ -1,0 +1,57 @@
+.search-page {
+    padding: 20px;
+    color: var(--white);
+  }
+  
+  .search-page h1 {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+  
+  .search-results {
+    margin-top: 30px;
+  }
+  
+  .search-results section {
+    margin-bottom: 40px;
+  }
+  
+  .search-results h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .track-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .track-item:hover {
+    background-color: var(--gray);
+  }
+  
+  .track-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  
+  .track-item h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .track-item p {
+    font-size: 14px;
+    color: var(--light-gray);
+  }
