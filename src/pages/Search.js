@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDebounce } from '../hooks/useDebounce';
 import SearchBar from '../components/music/SearchBar';
 import './Search.css';
@@ -11,34 +11,49 @@ const Search = () => {
     artists: [],
     playlists: []
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   
   const debouncedQuery = useDebounce(query, 500);
 
-  const handleSearch = (query) => {
-    if (query) {
+  useEffect(() => {
+    if (debouncedQuery) {
       setSearchResults({
         tracks: [
-          { id: '1', name: 'Blinding Lights', artists: [{ name: 'The Weeknd' }], album: { images: [{ url: 'https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228' }] } }
+          { 
+            id: '1', 
+            name: 'Blinding Lights', 
+            artists: [{ name: 'The Weeknd' }], 
+            album: { 
+              images: [{ url: 'https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228' }] 
+            } 
+          }
         ],
         albums: [
-          { id: '1', name: 'After Hours', artists: [{ name: 'The Weeknd' }], images: [{ url: 'https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228' }] }
+          { 
+            id: '1', 
+            name: 'After Hours', 
+            artists: [{ name: 'The Weeknd' }], 
+            images: [{ url: 'https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228' }] 
+          }
         ],
         artists: [
-          { id: '1', name: 'The Weeknd', images: [{ url: 'https://i.scdn.co/image/ab67616100005174a3ef9951cbf6c8b5c5e5e1e1' }] }
+          { 
+            id: '1', 
+            name: 'The Weeknd', 
+            images: [{ url: 'https://i.scdn.co/image/ab67616100005174a3ef9951cbf6c8b5c5e5e1e1' }] 
+          }
         ],
         playlists: [
-          { id: '1', name: 'Today\'s Top Hits', description: 'The most popular songs right now', images: [{ url: 'https://i.scdn.co/image/ab67706f00000002a76a9c1293b5c376a397d30c' }] }
+          { 
+            id: '1', 
+            name: 'Today\'s Top Hits', 
+            description: 'The most popular songs right now', 
+            images: [{ url: 'https://i.scdn.co/image/ab67706f00000002a76a9c1293b5c376a397d30c' }] 
+          }
         ]
       });
     } else {
       setSearchResults({ tracks: [], albums: [], artists: [], playlists: [] });
     }
-  };
-
-  useEffect(() => {
-    handleSearch(debouncedQuery);
   }, [debouncedQuery]);
 
   return (
@@ -46,26 +61,31 @@ const Search = () => {
       <SearchBar 
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="search-page-bar"
       />
       
       <div className="search-results">
-        {searchResults.tracks.length > 0 && (
-          <section>
-            <h2>Songs</h2>
-            <div className="tracks-grid">
-              {searchResults.tracks.map(track => (
-                <div key={track.id} className="track-item">
-                  <img src={track.album.images[0].url} alt={track.name} />
-                  <div>
-                    <h4>{track.name}</h4>
-                    <p>{track.artists.map(a => a.name).join(', ')}</p>
+        {Object.entries(searchResults).map(([type, items]) => (
+          items.length > 0 && (
+            <section key={type}>
+              <h2>{type.charAt(0).toUpperCase() + type.slice(1)}</h2>
+              <div className={`${type}-grid`}>
+                {items.map(item => (
+                  <div key={item.id} className="search-item">
+                    <img 
+                      src={item.images?.[0]?.url || item.album?.images?.[0]?.url} 
+                      alt={item.name} 
+                    />
+                    <div>
+                      <h4>{item.name}</h4>
+                      {item.artists && <p>{item.artists.map(a => a.name).join(', ')}</p>}
+                      {item.description && <p className="description">{item.description}</p>}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+                ))}
+              </div>
+            </section>
+          )
+        ))}
       </div>
     </div>
   );
