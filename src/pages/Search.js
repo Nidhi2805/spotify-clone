@@ -17,7 +17,6 @@ const Search = () => {
   const debouncedQuery = useDebounce(query, 500);
 
   const handleSearch = (query) => {
-    // Mock search results
     if (query) {
       setSearchResults({
         tracks: [
